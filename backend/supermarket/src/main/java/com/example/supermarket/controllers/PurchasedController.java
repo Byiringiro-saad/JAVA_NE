@@ -1,0 +1,33 @@
+package com.example.supermarket.controllers;
+
+import com.example.supermarket.models.PurchasedModel;
+import com.example.supermarket.payload.response.MessageResponse;
+import com.example.supermarket.services.PurchasedServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/purchased")
+public class PurchasedController {
+    @Autowired
+    PurchasedServices purchasedServices;
+
+    @GetMapping("/{id}")
+    public List<PurchasedModel> getPurchased(@PathVariable("id") Long useId){
+        return purchasedServices.getAllPurchased(useId);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<?> createPurchase(@RequestBody List<PurchasedModel> purchasedModels){
+
+        //create purchased models
+        purchasedModels.forEach(item -> {
+            purchasedServices.createPurchased(item);
+        });
+
+        return ResponseEntity.ok().body(new MessageResponse("Items purchased"));
+    }
+}
