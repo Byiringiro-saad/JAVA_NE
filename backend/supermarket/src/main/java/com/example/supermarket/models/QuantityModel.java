@@ -21,8 +21,9 @@ public class QuantityModel {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private Long product_code;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_code")
+    private ProductModel product;
 
     @Column
     private Number quantity;

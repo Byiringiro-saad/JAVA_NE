@@ -18,11 +18,12 @@ public class PurchasedModel {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private Long product_code;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_code")
+    private ProductModel product;
 
-    @Column
-    private Long quantity;
+    @OneToOne(cascade = CascadeType.ALL)
+    private QuantityModel quantity;
 
     @Column
     private Long user;

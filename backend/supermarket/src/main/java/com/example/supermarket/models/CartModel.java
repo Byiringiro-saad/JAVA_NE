@@ -22,11 +22,13 @@ public class CartModel {
     @GeneratedValue
     private Long id;
 
-    @Column
-    private Long product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private ProductModel product;
 
-    @Column
-    private Long user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private UserModel user;
 
     @Column
     private Number quantity;
