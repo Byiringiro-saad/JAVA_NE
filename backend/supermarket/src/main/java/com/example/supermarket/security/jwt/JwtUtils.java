@@ -36,7 +36,7 @@ public class JwtUtils {
   }
   
   private static Key key() {
-    return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
+    return Keys.hmacShaKeyFor(Decoders.BASE64.decode("ahsvdaisybdkasbduiasbdaiusbdiasbdiausbdiaysvdiausvduaysgdbiausndiaybsydibasdvayuisbdasvdiasvduatysudb"));
   }
 
   public String getEmailFromJwtToken(String token) {

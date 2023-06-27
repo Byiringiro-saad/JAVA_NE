@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router";
 
 //icons
 import { FaBoxes } from "react-icons/fa";
-import { AiFillBoxPlot } from "react-icons/ai";
+// import { AiFillBoxPlot } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 
 //styles
@@ -43,13 +43,13 @@ const Home = () => {
               <BsFillCartFill className={styles.icon} />
               <p>Cart</p>
             </div>
-            <div
+            {/* <div
               className={active === "purchases" ? styles.active : styles.one}
               onClick={() => handleActive("purchases")}
             >
               <AiFillBoxPlot className={styles.icon} />
               <p>Purchases</p>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.content}>

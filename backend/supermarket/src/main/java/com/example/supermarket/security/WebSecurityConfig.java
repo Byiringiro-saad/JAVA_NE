@@ -49,11 +49,10 @@ public class WebSecurityConfig {
   public CorsFilter corsFilter() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     CorsConfiguration config = new CorsConfiguration();
-
-    // Set the allowed origins, methods, headers, etc. as needed
+    config.setAllowCredentials(true);
     config.addAllowedOrigin("*");
-    config.addAllowedMethod("*");
     config.addAllowedHeader("*");
+    config.addAllowedMethod("*");
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter();
   }
@@ -74,15 +73,13 @@ public class WebSecurityConfig {
     http.csrf(csrf -> csrf.disable())
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(auth ->
-                    auth.requestMatchers("/api/auth/*").permitAll()
-                            .anyRequest().permitAll()
-        );
-    
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
+
     http.authenticationProvider(authenticationProvider());
 
-    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    
+//    http.addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class);
+
     return http.build();
   }
+
 }

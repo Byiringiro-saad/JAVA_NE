@@ -22,12 +22,18 @@ public class CartModel {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "product_id")
+    private Long productId;
+
+    @Column(name = "user_id")
+    private Long userId;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "code", insertable=false, updatable=false)
     private ProductModel product;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable=false, updatable=false)
     private UserModel user;
 
     @Column

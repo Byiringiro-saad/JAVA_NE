@@ -13,7 +13,7 @@ public class CartServices {
     CartRepository cartRepository;
 
     public List<CartModel> getCart(Long userId){
-        return cartRepository.findCartModelByUser(userId);
+        return cartRepository.FindByUser(userId);
     }
 
     public String createCart(CartModel cartModel){

@@ -2,10 +2,12 @@ package com.example.supermarket.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.apache.catalina.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.sql.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,15 +20,19 @@ public class PurchasedModel {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "product_id")
+    private Long productId;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_code")
+    @JoinColumn(name = "product_id", referencedColumnName = "code", insertable=false, updatable=false)
     private ProductModel product;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private QuantityModel quantity;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column
-    private Long user;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private UserModel user;
 
     @Column
     private Number total;
@@ -35,4 +41,5 @@ public class PurchasedModel {
     @CreatedDate
     @CreationTimestamp
     private Date date;
+
 }
